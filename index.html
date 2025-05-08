@@ -20,6 +20,15 @@
   document.addEventListener("DOMContentLoaded", function () {
     const el = document.getElementById("malInput");
 
+ // Restore saved session
+  el.value = localStorage.getItem("malText") || "";
+
+  // Save on every change
+  el.addEventListener("input", () => {
+    localStorage.setItem("malText", el.value);
+  });
+
+
     let debounce;
     floatype(el, {
       onQuery: async (val) => {
