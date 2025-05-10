@@ -5,14 +5,7 @@
   <title>Malayalam Transliterator</title>
   <style>
     body { font-family: sans-serif; padding: 2em; }
-    textarea { width: 100%; height: 200px; font-size: 1.2em; }
-    button { margin-top: 1em; padding: 0.5em 1em; font-size: 1em; }
-  </style>
-</head>
-<body>
-
-<h1>English → Malayalam Transliteration</h1>
-//<textarea id="malInput" placeholder="Type in English..."></textarea>
+    //textarea { width: 100%; height: 200px; font-size: 1.2em; }
 
 html, body {
   height: 100%;
@@ -27,7 +20,13 @@ textarea {
   padding: 1em;
 }
 
+    button { margin-top: 1em; padding: 0.5em 1em; font-size: 1em; }
+  </style>
+</head>
+<body>
 
+<h1>English → Malayalam Transliteration</h1>
+<textarea id="malInput" placeholder="Type in English..."></textarea>
 <br>
 <button onclick="downloadText()">Save as .txt</button>
 <button onclick="clearSession()">Clear session</button>
