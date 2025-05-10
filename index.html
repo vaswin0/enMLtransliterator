@@ -14,7 +14,7 @@ html, body {
 
 textarea {
   width: 100%;
-  height: calc(100vh - 160px); /* fills most of screen minus some space for buttons/header */
+  height: calc(100vh - 200px); /* fills most of screen minus some space for buttons/header */
   font-size: 1.2em;
   box-sizing: border-box;
   padding: 1em;
@@ -25,7 +25,19 @@ textarea {
 </head>
 <body>
 
-<h1>English → Malayalam Transliteration</h1>
+<h1>Transliteration</h1>
+
+<label for="langSelect"><strong>Choose Language:</strong></label>
+<select id="langSelect">
+  <option value="ml">Malayalam</option>
+  <option value="hi">Hindi</option>
+  <option value="ta">Tamil</option>
+</select>
+
+
+
+
+
 <textarea id="malInput" placeholder="Type in English..."></textarea>
 <br>
 <button onclick="downloadText()">Save as .txt</button>
@@ -34,6 +46,12 @@ textarea {
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const el = document.getElementById("malInput");
+    
+       const langMap = {
+      ml: "ml-t-i0-und",
+      hi: "hi-t-i0-und",
+      ta: "ta-t-i0-und",
+    };
 
  // Restore saved session
   el.value = localStorage.getItem("malText") || "";
@@ -50,7 +68,11 @@ textarea {
         clearTimeout(debounce);
         return new Promise(resolve => {
           debounce = setTimeout(async () => {
-            const response = await fetch(`https://inputtools.google.com/request?text=${val.toLowerCase()}&itc=ml-t-i0-und&num=5&cp=0&cs=1&ie=utf-8&oe=utf-8`);
+          
+          const langCode = document.getElementById("langSelect").value;
+          const inputCode = langMap[langCode] || "ml-t-i0-und"; //default fallback
+          const response = await fetch(`https://inputtools.google.com/request?text=${val.toLowerCase()}&itc=${inputCode}&num=5&cp=0&cs=1&ie=utf-8&oe=utf-8`);
+
             const data = await response.json();
             if (data.length !== 2) return;
             debounce = null;
