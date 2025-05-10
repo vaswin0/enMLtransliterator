@@ -12,7 +12,22 @@
 <body>
 
 <h1>English → Malayalam Transliteration</h1>
-<textarea id="malInput" placeholder="Type in English..."></textarea>
+//<textarea id="malInput" placeholder="Type in English..."></textarea>
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+textarea {
+  width: 100%;
+  height: calc(100vh - 160px); /* fills most of screen minus some space for buttons/header */
+  font-size: 1.2em;
+  box-sizing: border-box;
+  padding: 1em;
+}
+
+
 <br>
 <button onclick="downloadText()">Save as .txt</button>
 <button onclick="clearSession()">Clear session</button>
